@@ -1,0 +1,3 @@
+<configuration>
+    <!--LEFT INTENTIONALLY BLANK if you add loggers logback spits all the logging to console :'( -->
+</configuration>

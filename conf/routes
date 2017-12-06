@@ -1,0 +1,10 @@
+# Home page
+
+GET         /name-query            controllers.QueryController.getResponseByCountryName(query: String)
+GET         /code-query            controllers.QueryController.getResponseByCountryCode(query: String)
+
+
+GET         /countries-by-high-number-airport       controllers.ReportController.getMaxAirportNumberWithCountry()
+GET         /countries-by-low-number-airport        controllers.ReportController.getMinAirportNumberWithCountry()
+GET         /types-of-runways-by-country            controllers.ReportController.getRunwayTypesByAirport()
+GET         /top-common-runway-identifications      controllers.ReportController.getMostCommonRunwayIdent()

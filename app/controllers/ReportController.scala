@@ -16,10 +16,7 @@ import scala.concurrent.Future
 
 class ReportController @Inject() (csvDataCache: CsvCache) extends Controller with ReportModelsJsonTransformer {
 
-  private val logger = LoggerFactory.getLogger(this.getClass)
-
   def getMaxAirportNumberWithCountry() = Action.async {
-    logger.info("Serving request getMaxAirportNumberWithCountry")
     val resultF: Future[CountriesWithAirportsCount] = csvDataCache.getDataSet.map(countryAirportRunwayData => {
       ReportService.getCountriesWithHighestAirports(10, countryAirportRunwayData.countries, countryAirportRunwayData.airports)
     })

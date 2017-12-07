@@ -20,6 +20,7 @@ class ErrorHandler @Inject() (
   private val logger = LoggerFactory.getLogger(this.getClass)
 
   override def onServerError(request : play.api.mvc.RequestHeader, exception : scala.Throwable) = {
+    logger.error(exception.getLocalizedMessage)
     exception.getStackTrace.map(stackTraceElement => logger.error(stackTraceElement.toString))
     Future.successful(
       InternalServerError("A server error occurred: " + exception.getMessage)

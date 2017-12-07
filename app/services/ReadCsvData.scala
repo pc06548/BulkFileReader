@@ -18,9 +18,16 @@ object ReadCsvData {
 
   private def readFile[T](fileName: String, transform: (util.Iterator[CSVRecord], List[T]) => List[T]): Future[List[T]] = {
     Future {
-      val in = new FileReader(getClass.getResource(fileName).getFile)
+      val in = new FileReader(getCompleteFilePath(fileName))
       val records: util.Iterator[CSVRecord] = CSVFormat.EXCEL.withHeader().parse(in).iterator()
       transform(records, List.empty[T])
+    }
+  }
+
+  private def getCompleteFilePath(fileName: String): String = {
+    try getClass.getResource(fileName).getFile
+    catch {
+      case ex: Exception => throw new Exception(s"File does not exist in resources ${fileName}", ex)
     }
   }
 }
